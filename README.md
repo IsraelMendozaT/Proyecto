@@ -1,3 +1,5 @@
+Proyecto - Test de cultura general
+
 Los videojuegos son una forma de entretenimiento que ha evolucionado bastante con el paso de los años. Actualmente existen muchos géneros diferentes, como acción, aventura, deportes, estrategia, carreras y juegos de rol. Además de ser una forma de diversión, los videojuegos también pueden ayudar a desarrollar habilidades como la resolución de problemas, la memoria, la toma de decisiones y la coordinación.
 
 Existen videojuegos para diferentes tipos de jugadores y plataformas, como computadoras, consolas y dispositivos móviles. Algunos de los títulos más conocidos han tenido un gran impacto en la industria y se han convertido en parte importante de la cultura popular. Por esta razón, conocer sobre videojuegos puede incluir aspectos como sus personajes, géneros, plataformas, desarrolladores y características principales.
