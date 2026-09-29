@@ -2,11 +2,12 @@
 Simulador de examen de cultura general de videojuegos
 El programa arroja ciertas preguntas al usuario de manera aleatoria
 y si el usuario acierta o falla se le indica despues de cada pregunta.
-Tambien se le indica cuantos puntos gano y cuantos puntos lleva hasta el momento
+Tambien se le indica cuantos puntos gano y cuantos puntos lleva hasta
+el momento
 """
 
 """
-================== funciones de preguntas  =====================================
+=== funciones de preguntas  ===
 """
 
 def pregunta_mario(respuesta):
@@ -47,7 +48,7 @@ def puntuacion(puntos1, puntos2):
 
 
 """
-================== parte principal del programa =============================
+=== parte principal del programa ===
 """
 
 print("¿En qué año se lanzó Super Mario Bros.?")
@@ -63,3 +64,10 @@ puntos2 = pregunta_zelda(respuesta2)
 total = puntuacion(puntos1, puntos2)
 
 print("Tu puntuación final es:", total, "de 2")
+
+if (total == 2):
+    print("¡Excelente! Respondiste todas las preguntas correctamente.")
+elif (total == 1):
+    print("Bien, pero puedes mejorar. Respondiste una pregunta correctamente.")
+else:
+    print("No obtuviste puntos esta vez. ¡Puedes volver a intentarlo!")
