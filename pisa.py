@@ -1,13 +1,13 @@
 """
 Simulador de examen de cultura general de videojuegos
-El programa arroja ciertas preguntas al usuario de manera aleatoria
-y si el usuario acierta o falla se le indica despues de cada pregunta.
+El programa arroja ciertas preguntas al usuario.
+Si el usuario acierta o falla se le indica despues de cada pregunta.
 Tambien se le indica cuantos puntos gano y cuantos puntos lleva hasta
-el momento
+el momento.
 """
 
 """
-=== funciones de preguntas  ===
+=== funciones de preguntas ===
 """
 
 def pregunta_mario(respuesta):
@@ -36,37 +36,51 @@ def pregunta_zelda(respuesta):
         return 0
 
 
-def puntuacion(puntos1, puntos2):
+def pregunta_pokemon(respuesta):
     """
-    (uso de funciones, parametros y operadores)
-    recibe: puntos1 y puntos2 como valores numericos
-    suma los puntos obtenidos en las dos preguntas
-    devuelve: puntuacion total del usuario
+    (uso de condicionales, funciones y operadores)
+    recibe: respuesta del usuario como cadena de texto
+    comprueba si la respuesta del usuario es Pikachu
+    devuelve: 1 si la respuesta es correcta y 0 si es incorrecta
     """
-    total = puntos1 + puntos2
-    return total
+    if (respuesta == "Pikachu"):
+        return 1
+    else:
+        return 0
 
 
 """
 === parte principal del programa ===
 """
 
-print("¿En qué año se lanzó Super Mario Bros.?")
-respuesta1 = input()
+preguntas = [
+    ("¿En qué año se lanzó Super Mario Bros.?", pregunta_mario),
+    ("¿Cuál es el nombre del protagonista de The Legend of Zelda?", pregunta_zelda),
+    ("¿Cuál es el nombre del Pokémon más conocido?", pregunta_pokemon)]
 
-puntos1 = pregunta_mario(respuesta1)
+total = 0
 
-print("¿Cuál es el nombre del protagonista de The Legend of Zelda?")
-respuesta2 = input()
+for i in range(3):
+    print(preguntas[i][0])
+    respuesta = input()
 
-puntos2 = pregunta_zelda(respuesta2)
+    puntos = preguntas[i][1](respuesta)
+    total = total + puntos
 
-total = puntuacion(puntos1, puntos2)
+    if (puntos == 1):
+        print("¡Correcto! Ganaste 1 punto.")
+    else:
+        print("Incorrecto. No ganaste puntos.")
 
-print("Tu puntuación final es:", total, "de 2")
+    print("Puntos acumulados:", total)
+    print()
 
-if (total == 2):
+print("Tu puntuación final es:", total, "de 3")
+
+if (total == 3):
     print("¡Excelente! Respondiste todas las preguntas correctamente.")
+elif (total == 2):
+    print("Muy bien. Respondiste dos preguntas correctamente.")
 elif (total == 1):
     print("Bien, pero puedes mejorar. Respondiste una pregunta correctamente.")
 else:
