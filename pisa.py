@@ -56,7 +56,14 @@ def pregunta_pokemon(respuesta):
 preguntas = [
     ("¿En qué año se lanzó Super Mario Bros.?", pregunta_mario),
     ("¿Cuál es el nombre del protagonista de The Legend of Zelda?", pregunta_zelda),
-    ("¿Cuál es el nombre del Pokémon más conocido?", pregunta_pokemon)]
+    ("¿Cuál es el nombre del Pokémon más conocido?", pregunta_pokemon)
+]
+
+# Lista para guardar las respuestas del usuario
+respuestas = []
+
+# Lista para guardar los puntos obtenidos en cada pregunta
+puntos_obtenidos = []
 
 total = 0
 
@@ -64,8 +71,14 @@ for i in range(3):
     print(preguntas[i][0])
     respuesta = input()
 
+    # Guardar la respuesta del usuario en la lista
+    respuestas.append(respuesta)
+
     puntos = preguntas[i][1](respuesta)
     total = total + puntos
+
+    # Guardar los puntos obtenidos en la lista
+    puntos_obtenidos.append(puntos)
 
     if (puntos == 1):
         print("¡Correcto! Ganaste 1 punto.")
@@ -73,7 +86,6 @@ for i in range(3):
         print("Incorrecto. No ganaste puntos.")
 
     print("Puntos acumulados:", total)
-    print()
 
 print("Tu puntuación final es:", total, "de 3")
 
@@ -85,3 +97,11 @@ elif (total == 1):
     print("Bien, pero puedes mejorar. Respondiste una pregunta correctamente.")
 else:
     print("No obtuviste puntos esta vez. ¡Puedes volver a intentarlo!")
+
+# Mostrar las respuestas y los puntos guardados en las listas
+print("Resumen de tus respuestas")
+
+for i in range(3):
+    print("Pregunta:", preguntas[i][0])
+    print("Tu respuesta:", respuestas[i])
+    print("Puntos obtenidos:", puntos_obtenidos[i])
