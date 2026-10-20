@@ -1,5 +1,6 @@
 """
 Simulador de examen de cultura general de videojuegos
+
 El programa arroja ciertas preguntas al usuario.
 Si el usuario acierta o falla se le indica despues de cada pregunta.
 Tambien se le indica cuantos puntos gano y cuantos puntos lleva hasta
@@ -12,10 +13,9 @@ el momento.
 
 def pregunta_mario(respuesta):
     """
-    (uso de condicionales, funciones y operadores)
-    recibe: respuesta del usuario como cadena de texto
-    comprueba si la respuesta del usuario es 1985
-    devuelve: 1 si la respuesta es correcta y 0 si es incorrecta
+    Recibe: la respuesta del usuario como cadena de texto.
+    Hace: comprueba si la respuesta del usuario es 1985.
+    Devuelve: 1 si la respuesta es correcta y 0 si es incorrecta.
     """
     if (respuesta == "1985"):
         return 1
@@ -25,10 +25,9 @@ def pregunta_mario(respuesta):
 
 def pregunta_zelda(respuesta):
     """
-    (uso de condicionales, funciones y operadores)
-    recibe: respuesta del usuario como cadena de texto
-    comprueba si la respuesta del usuario es Link
-    devuelve: 1 si la respuesta es correcta y 0 si es incorrecta
+    Recibe: la respuesta del usuario como cadena de texto.
+    Hace: comprueba si la respuesta del usuario es Link.
+    Devuelve: 1 si la respuesta es correcta y 0 si es incorrecta.
     """
     if (respuesta == "Link"):
         return 1
@@ -38,10 +37,9 @@ def pregunta_zelda(respuesta):
 
 def pregunta_pokemon(respuesta):
     """
-    (uso de condicionales, funciones y operadores)
-    recibe: respuesta del usuario como cadena de texto
-    comprueba si la respuesta del usuario es Pikachu
-    devuelve: 1 si la respuesta es correcta y 0 si es incorrecta
+    Recibe: la respuesta del usuario como cadena de texto.
+    Hace: comprueba si la respuesta del usuario es Pikachu.
+    Devuelve: 1 si la respuesta es correcta y 0 si es incorrecta.
     """
     if (respuesta == "Pikachu"):
         return 1
@@ -53,42 +51,71 @@ def pregunta_pokemon(respuesta):
 === parte principal del programa ===
 """
 
+"""
+Lista de preguntas:
+Guarda el texto de cada pregunta y la funcion que comprueba
+si la respuesta del usuario es correcta.
+"""
 preguntas = [
     ("¿En qué año se lanzó Super Mario Bros.?", pregunta_mario),
     ("¿Cuál es el nombre del protagonista de The Legend of Zelda?", pregunta_zelda),
     ("¿Cuál es el nombre del Pokémon más conocido?", pregunta_pokemon)
 ]
 
-# Lista para guardar las respuestas del usuario
+
 respuestas = []
 
-# Lista para guardar los puntos obtenidos en cada pregunta
+
 puntos_obtenidos = []
+
 
 total = 0
 
+"""
+Ciclo for:
+Recibe: el rango de 3 preguntas.
+Hace: repite el proceso de mostrar una pregunta, recibir la respuesta,
+comprobarla y actualizar la puntuacion.
+Devuelve: no devuelve un valor; ejecuta las instrucciones del ciclo.
+"""
 for i in range(3):
+
     print(preguntas[i][0])
+
     respuesta = input()
 
-    # Guardar la respuesta del usuario en la lista
     respuestas.append(respuesta)
 
     puntos = preguntas[i][1](respuesta)
+
     total = total + puntos
 
-    # Guardar los puntos obtenidos en la lista
     puntos_obtenidos.append(puntos)
 
+    """
+    Condicional de resultado:
+    Recibe: los puntos obtenidos en la pregunta actual.
+    Hace: determina si la respuesta fue correcta o incorrecta.
+    Devuelve: no devuelve un valor; muestra el mensaje correspondiente.
+    """
     if (puntos == 1):
         print("¡Correcto! Ganaste 1 punto.")
     else:
         print("Incorrecto. No ganaste puntos.")
 
     print("Puntos acumulados:", total)
+    print()
+
 
 print("Tu puntuación final es:", total, "de 3")
 
+"""
+Condicional final:
+Recibe: el total de puntos obtenidos.
+Hace: determina el mensaje que corresponde al resultado del usuario.
+Devuelve: no devuelve un valor; muestra un mensaje de acuerdo
+con la puntuacion final.
+"""
 if (total == 3):
     print("¡Excelente! Respondiste todas las preguntas correctamente.")
 elif (total == 2):
@@ -98,8 +125,14 @@ elif (total == 1):
 else:
     print("No obtuviste puntos esta vez. ¡Puedes volver a intentarlo!")
 
-# Mostrar las respuestas y los puntos guardados en las listas
-print("Resumen de tus respuestas")
+"""
+Resumen de respuestas:
+Recibe: las listas de preguntas, respuestas y puntos obtenidos.
+Hace: recorre las listas para mostrar la informacion de cada pregunta.
+Devuelve: no devuelve un valor; presenta el resumen en pantalla.
+"""
+print()
+print("=== Resumen de tus respuestas ===")
 
 for i in range(3):
     print("Pregunta:", preguntas[i][0])
