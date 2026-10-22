@@ -1,6 +1,5 @@
 """
 Simulador de examen de cultura general de videojuegos
-
 El programa arroja ciertas preguntas al usuario.
 Si el usuario acierta o falla se le indica despues de cada pregunta.
 Tambien se le indica cuantos puntos gano y cuantos puntos lleva hasta
@@ -22,7 +21,6 @@ def pregunta_mario(respuesta):
     else:
         return 0
 
-
 def pregunta_zelda(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -34,7 +32,6 @@ def pregunta_zelda(respuesta):
     else:
         return 0
 
-
 def pregunta_pokemon(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -45,7 +42,6 @@ def pregunta_pokemon(respuesta):
         return 1
     else:
         return 0
-
 
 """
 === parte principal del programa ===
@@ -62,14 +58,24 @@ preguntas = [
     ("¿Cuál es el nombre del Pokémon más conocido?", pregunta_pokemon)
 ]
 
-
 respuestas = []
-
-
 puntos_obtenidos = []
-
-
 total = 0
+
+"""
+Matriz de resultados:
+Cada fila guarda los datos de una pregunta:
+1. Texto de la pregunta.
+2. Respuesta del usuario.
+3. Puntos obtenidos.
+Al principio, las respuestas y los puntos se guardan
+como espacios vacios que se actualizaran durante el examen.
+"""
+matriz_resultados = [
+    [preguntas[0][0], "", 0],
+    [preguntas[1][0], "", 0],
+    [preguntas[2][0], "", 0]
+]
 
 """
 Ciclo for:
@@ -79,18 +85,21 @@ comprobarla y actualizar la puntuacion.
 Devuelve: no devuelve un valor; ejecuta las instrucciones del ciclo.
 """
 for i in range(3):
-
     print(preguntas[i][0])
-
     respuesta = input()
-
     respuestas.append(respuesta)
-
     puntos = preguntas[i][1](respuesta)
-
     total = total + puntos
-
     puntos_obtenidos.append(puntos)
+
+    """
+    Actualizacion de la matriz:
+    Recibe: el indice de la pregunta, la respuesta y los puntos.
+    Hace: guarda la respuesta y los puntos en la fila correspondiente.
+    Devuelve: no devuelve un valor; actualiza los datos de la matriz.
+    """
+    matriz_resultados[i][1] = respuesta
+    matriz_resultados[i][2] = puntos
 
     """
     Condicional de resultado:
@@ -102,10 +111,7 @@ for i in range(3):
         print("¡Correcto! Ganaste 1 punto.")
     else:
         print("Incorrecto. No ganaste puntos.")
-
     print("Puntos acumulados:", total)
-    print()
-
 
 print("Tu puntuación final es:", total, "de 3")
 
@@ -127,14 +133,13 @@ else:
 
 """
 Resumen de respuestas:
-Recibe: las listas de preguntas, respuestas y puntos obtenidos.
-Hace: recorre las listas para mostrar la informacion de cada pregunta.
+Recibe: la matriz de resultados.
+Hace: recorre la matriz para mostrar la informacion de cada pregunta.
 Devuelve: no devuelve un valor; presenta el resumen en pantalla.
 """
-print()
 print("=== Resumen de tus respuestas ===")
 
 for i in range(3):
-    print("Pregunta:", preguntas[i][0])
-    print("Tu respuesta:", respuestas[i])
-    print("Puntos obtenidos:", puntos_obtenidos[i])
+    print("Pregunta:", matriz_resultados[i][0])
+    print("Tu respuesta:", matriz_resultados[i][1])
+    print("Puntos obtenidos:", matriz_resultados[i][2])
