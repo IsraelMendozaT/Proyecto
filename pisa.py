@@ -19,6 +19,7 @@ def pregunta_mario(respuesta):
         return 1
     else:
         return 0
+
 def pregunta_zelda(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -29,6 +30,7 @@ def pregunta_zelda(respuesta):
         return 1
     else:
         return 0
+
 def pregunta_pokemon(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -39,6 +41,7 @@ def pregunta_pokemon(respuesta):
         return 1
     else:
         return 0
+
 def pregunta_minecraft(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -49,6 +52,7 @@ def pregunta_minecraft(respuesta):
         return 1
     else:
         return 0
+
 def pregunta_tetris(respuesta):
     """
     Recibe: la respuesta del usuario como cadena de texto.
@@ -90,6 +94,9 @@ preguntas = [
 respuestas = []
 puntos_obtenidos = []
 total = 0
+
+# NUEVO AVANCE: solicitar el nombre del participante
+nombre = input("Escribe tu nombre: ")
 
 """
 Matriz de resultados:
@@ -185,7 +192,6 @@ def buscar_pregunta(palabra, matriz):
     palabra = palabra.strip().lower()
     for i in range(5):
         pregunta = matriz[i][0].lower()
-
         if (palabra in pregunta):
             print("Pregunta encontrada:", matriz[i][0])
             print("Tu respuesta:", matriz[i][1])
@@ -202,3 +208,48 @@ print()
 print("=== Busqueda de preguntas ===")
 palabra = input("Escribe una palabra para buscar en las preguntas: ")
 buscar_pregunta(palabra, matriz_resultados)
+
+"""
+Funcion para guardar resultados:
+Recibe: el nombre del participante, la matriz y la puntuacion final.
+Hace: guarda los resultados del examen en un archivo de texto.
+Devuelve: no devuelve un valor; escribe la informacion en el archivo.
+"""
+def guardar_resultados(nombre, matriz, total):
+    archivo = open("resultados_examen.txt", "a", encoding="utf-8")
+    archivo.write("====================================\n")
+    archivo.write("Participante: " + nombre + "\n")
+    archivo.write("Puntuacion final: " + str(total) + " de 5\n")
+    archivo.write("Resultados de las preguntas:\n")
+    for i in range(5):
+        archivo.write("Pregunta: " + matriz[i][0] + "\n")
+        archivo.write("Respuesta: " + matriz[i][1] + "\n")
+        archivo.write("Puntos: " + str(matriz[i][2]) + "\n")
+    archivo.write("====================================\n\n")
+    archivo.close()
+    print("Tus resultados se guardaron correctamente.")
+
+"""
+Funcion para cargar resultados:
+Recibe: el nombre del archivo que contiene los resultados guardados.
+Hace: abre y lee la informacion almacenada anteriormente.
+Devuelve: muestra en pantalla el contenido del archivo.
+"""
+def cargar_resultados():
+    try:
+        archivo = open("resultados_examen.txt", "r", encoding="utf-8")
+        contenido = archivo.read()
+        archivo.close()
+        print()
+        print("=== Resultados guardados anteriormente ===")
+        print(contenido)
+    except FileNotFoundError:
+        print("Todavia no existen resultados guardados.")
+
+"""
+Guardar y cargar informacion:
+Primero guarda los resultados del examen actual.
+Despues carga y muestra todos los resultados almacenados.
+"""
+guardar_resultados(nombre, matriz_resultados, total)
+cargar_resultados()
